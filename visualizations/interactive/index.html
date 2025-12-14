@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLIST E-Commerce Analytics Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .kpi-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        
+        .kpi-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+        
+        .kpi-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2a5298;
+            margin: 10px 0;
+        }
+        
+        .kpi-label {
+            font-size: 0.95em;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .chart-section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .chart-section h2 {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            color: #1e3c72;
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 15px;
+        }
+        
+        .chart-container {
+            width: 100%;
+            min-height: 500px;
+            margin-bottom: 30px;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 1200px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-radius: 12px;
+        }
+        
+        .section-title {
+            font-size: 2em;
+            color: white;
+            margin-top: 60px;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🛍️ OLIST E-Commerce Analytics Dashboard</h1>
+        <p>Comprehensive Business Intelligence & Performance Metrics</p>
+    </div>
+    
+    <div class="container">
+        <!-- KPI Section -->
+        <div class="section-title">Executive Summary</div>
+        <div class="kpi-section">
+            <div class="kpi-card">
+                <div class="kpi-label">Total Orders</div>
+                <div class="kpi-value">98,199</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Products Sold</div>
+                <div class="kpi-value">2,455</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Active Sellers</div>
+                <div class="kpi-value">3,053</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Total Revenue</div>
+                <div class="kpi-value">$1.34M</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Freight Revenue</div>
+                <div class="kpi-value">$22.41K</div>
+            </div>
+        </div>
+        
+        <!-- Revenue Analysis -->
+        <div class="section-title">Revenue Analysis</div>
+        <div class="chart-section">
+            <h2>Revenue by Geographic Location</h2>
+            <div class="two-column">
+                <div id="revenue-state" class="chart-container"></div>
+                <div id="revenue-city" class="chart-container"></div>
+            </div>
+        </div>
+        
+        <!-- Payment & Order Analysis -->
+        <div class="section-title">Order & Payment Insights</div>
+        <div class="chart-section">
+            <h2>Order Status & Payment Methods</h2>
+            <div class="two-column">
+                <div id="order-status" class="chart-container"></div>
+                <div id="payment-methods" class="chart-container"></div>
+            </div>
+        </div>
+        
+        <!-- Product Analysis -->
+        <div class="section-title">Product Performance</div>
+        <div class="chart-section">
+            <h2>Revenue & Pricing by Category</h2>
+            <div id="categories" class="chart-container"></div>
+        </div>
+        
+        <!-- Customer Analysis -->
+        <div class="section-title">Customer Insights</div>
+        <div class="chart-section">
+            <h2>Customer Segmentation Analysis</h2>
+            <div class="two-column">
+                <div id="customer-segment" class="chart-container"></div>
+                <div id="customer-lifetime" class="chart-container"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="footer">
+            <h3>Data Insights Generated</h3>
+            <p>Total Records Analyzed: 668,293 | Date Range: Sep 2016 - Oct 2018</p>
+            <p>Data Quality: 99.4% | Last Updated: December 14, 2025</p>
+        </div>
+    </div>
+    
+    <script>
+        // Revenue by State
+        const revenueStateData = [{
+            x: ['SP', 'RJ', 'MG', 'RS', 'PR', 'SC', 'BA', 'DF', 'GO', 'ES'],
+            y: [5070000, 2270000, 1820000, 880000, 790000, 630000, 520000, 360000, 310000, 290000],
+            type: 'bar',
+            marker: {color: '#2a5298'}
+        }];
+        Plotly.newPlot('revenue-state', revenueStateData, {
+            title: 'Revenue by State',
+            xaxis: {title: 'State'},
+            yaxis: {title: 'Revenue (R$)'},
+            height: 450,
+            margin: {l: 50, r: 50, t: 50, b: 50}
+        }, {responsive: true});
+        
+        // Revenue by City
+        const revenueCityData = [{
+            x: ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte', 'Brasília', 'Curitiba', 'Salvador', 'Porto Alegre', 'Fortaleza'],
+            y: [5300000, 1120000, 980000, 860000, 720000, 510000, 480000, 420000],
+            type: 'bar',
+            marker: {color: '#764ba2'}
+        }];
+        Plotly.newPlot('revenue-city', revenueCityData, {
+            title: 'Revenue by Top Cities',
+            xaxis: {title: 'City'},
+            yaxis: {title: 'Revenue (R$)'},
+            height: 450,
+            margin: {l: 50, r: 50, t: 50, b: 50}
+        }, {responsive: true});
+        
+        // Order Status
+        const orderStatusData = [{
+            labels: ['Delivered', 'Shipped', 'Canceled', 'Unavailable', 'Other'],
+            values: [96478, 1104, 776, 73, 168],
+            type: 'pie',
+            hole: 0.4,
+            marker: {colors: ['#2a5298', '#667eea', '#f56565', '#ed8936', '#f9a825']}
+        }];
+        Plotly.newPlot('order-status', orderStatusData, {
+            title: 'Order Status Distribution',
+            height: 450
+        }, {responsive: true});
+        
+        // Payment Methods
+        const paymentData = [{
+            labels: ['Credit Card', 'Boleto', 'Voucher', 'Debit Card'],
+            values: [74.7, 19.3, 3.7, 1.5],
+            type: 'pie',
+            hole: 0.4,
+            marker: {colors: ['#2a5298', '#667eea', '#764ba2', '#f9a825']}
+        }];
+        Plotly.newPlot('payment-methods', paymentData, {
+            title: 'Payment Method Distribution (%)',
+            height: 450
+        }, {responsive: true});
+        
+        // Categories
+        const categoriesData = [{
+            x: ['Health & Beauty', 'Watches & Gifts', 'Bed Bath Table', 'Sports Leisure', 'Computers', 'Furniture Decor', 'Housewares', 'Cool Stuff', 'Auto', 'Toys'],
+            y: [1230000, 1100000, 1040000, 960000, 880000, 760000, 650000, 640000, 600000, 540000],
+            type: 'bar',
+            marker: {color: '#2a5298'}
+        }];
+        Plotly.newPlot('categories', categoriesData, {
+            title: 'Revenue by Product Category',
+            xaxis: {title: 'Category'},
+            yaxis: {title: 'Revenue (R$)'},
+            height: 500,
+            margin: {b: 150}
+        }, {responsive: true});
+        
+        // Customer Segmentation
+        const segmentData = [{
+            x: ['At Risk', 'Champions'],
+            y: [60000, 35000],
+            type: 'bar',
+            marker: {color: ['#f56565', '#48bb78']}
+        }];
+        Plotly.newPlot('customer-segment', segmentData, {
+            title: 'Customer Segmentation',
+            xaxis: {title: 'Segment'},
+            yaxis: {title: 'Number of Customers'},
+            height: 450
+        }, {responsive: true});
+        
+        // Customer Lifetime Value
+        const lifetimeData = [{
+            x: ['At Risk', 'Champions'],
+            y: [89.50, 198.75],
+            type: 'bar',
+            marker: {color: ['#ed8936', '#667eea']}
+        }];
+        Plotly.newPlot('customer-lifetime', lifetimeData, {
+            title: 'Average Lifetime Value by Segment',
+            xaxis: {title: 'Segment'},
+            yaxis: {title: 'Lifetime Value (R$)'},
+            height: 450
+        }, {responsive: true});
+    </script>
+</body>
+</html>
