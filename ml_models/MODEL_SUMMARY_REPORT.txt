@@ -1,0 +1,29 @@
+
+========== ML MODELS PERFORMANCE SUMMARY ==========
+
+[1] DELIVERY DELAY PREDICTION
+   Model: Random Forest Classifier
+   Accuracy: 92.16%
+   ROC-AUC Score: 0.729
+   Top Feature: days_until_delivery
+   Use Case: Identify orders likely to be delayed
+   
+[2] REVIEW SCORE PREDICTION
+   Model: Random Forest Regressor
+   R2 Score: 0.2054
+   RMSE: 1.1480 stars
+   Top Feature: delivery_efficiency
+   Use Case: Predict customer satisfaction scores
+   
+[3] CUSTOMER SEGMENTATION
+   Method: K-Means Clustering (RFM Analysis)
+   Segments: 4
+   Top Segment: At Risk
+   Customers Segmented: 96,478
+   Use Case: Targeted marketing campaigns
+
+Output Files Generated:
+   - Predictions: sql_results/10_delivery_feature_importance.csv
+   - Predictions: sql_results/11_review_feature_importance.csv
+   - Predictions: sql_results/12_customer_segmentation.csv
+   - Visualizations: ml_models/01_*.png through ml_models/06_*.png
