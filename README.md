@@ -264,6 +264,91 @@ The Power BI dashboard includes:
 
 ---
 
+## 🎨 Dashboard Gallery
+
+### 📱 Interactive Power BI Dashboards
+
+#### Executive Overview
+Get a high-level view of key business metrics and performance indicators at a glance.
+
+![Executive Overview Dashboard](power%20bi/images/executive_overview.png)
+
+---
+
+#### Orders & Payments Analysis
+Comprehensive analysis of order patterns, payment methods, and transaction trends.
+
+![Orders and Payments Dashboard](power%20bi/images/orders_and_payments.png)
+
+---
+
+#### Geographic Analysis
+Revenue distribution across states and cities with interactive mapping capabilities.
+
+![Geography Analysis Dashboard](power%20bi/images/geography_analysis.png)
+
+---
+
+#### Products & Sellers Performance
+Detailed product category analysis and seller performance metrics.
+
+![Products and Sellers Dashboard](power%20bi/images/products_and_sellers.png)
+
+---
+
+#### Customer Lifetime Value
+Advanced segmentation analysis showing customer value distribution and lifetime metrics.
+
+![Customer Lifetime Value Dashboard](power%20bi/images/average_lifetime_value.png)
+
+---
+
+## 📊 Static Visualizations
+
+Detailed analytical charts generated from the data pipeline.
+
+### Revenue Analysis by State
+Distribution of revenue across different states showing geographic performance.
+
+![Revenue by State](visualizations/01_static_revenue_state.png)
+
+---
+
+### Order Status Distribution
+Breakdown of order statuses showing fulfillment rates and order outcomes.
+
+![Order Status Distribution](visualizations/02_static_order_status.png)
+
+---
+
+### Price Distribution Analysis
+Price distribution across products with statistical insights.
+
+![Price Distribution](visualizations/03_static_price_dist.png)
+
+---
+
+### Delivery Time Distribution
+Analysis of delivery times showing performance metrics and delivery patterns.
+
+![Delivery Distribution](visualizations/04_static_delivery_dist.png)
+
+---
+
+### Top Product Categories
+Performance ranking of product categories by revenue and volume.
+
+![Top Categories](visualizations/05_static_top_categories.png)
+
+---
+
+### Price vs Review Score Analysis
+Correlation analysis between product pricing and customer review scores.
+
+![Price vs Review](visualizations/06_static_price_review.png)
+
+---
+
 ## 🛠️ Technologies Used
 
 | Category | Tools |
