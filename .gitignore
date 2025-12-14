@@ -34,8 +34,6 @@ data/cleaned/*.csv
 *.sqlite
 *.sqlite3
 
-# Power BI
-power\ bi/*.pbix
 
 # IDE
 .vscode/
@@ -57,10 +55,3 @@ logs/
 *.tmp
 *.temp
 .cache/
-
-# Output files
-*.png
-*.jpg
-*.jpeg
-ml_models/*.png
-visualizations/*.png
